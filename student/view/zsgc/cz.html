@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/layer-v3.1.1/layer/layer.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+</head>
+<body>
+<br><table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>工号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>联系方式</th>
+        <th>岗位</th>
+        <th>住址</th>
+    </tr>
+    </thead>
+    <tbody style="color: #0000FF">
+    {volist name="lis" id="vo"}
+    <tr>
+        <!--{vo.name_a}-->
+        <td>{$vo.id}</td>
+        <td id="sp">{$vo.name}</td>
+        <td id="jg">{$vo.nianl}</td>
+        <td id="yf">{$vo.dianh}</td>
+        <td id="gw">{$vo.banj}</td>
+        <td id="diz">{$vo.diz}</td>
+
+        <!--<h5>{vo.name_a}</h5>-->
+
+    </tr>
+    {/volist}
+    </tbody>
+</table>
+<!--<form action="{:url('zsgc/cz')}" method="post">-->
+<!--<input type="text" name="name" placeholder="输入员工姓名">-->
+<!--<input type="submit" value="查询">-->
+</form>
+</body>
+</html>

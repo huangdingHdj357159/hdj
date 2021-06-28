@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>员工信息修改</title>
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/layer-v3.1.1/layer/layer.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <style type="text/css">
+        .dis{
+            display: none;
+            /*隐藏标签不占任何空间*/
+        }
+    </style>
+</head>
+<body>
+<i class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工工号</label>
+        <div class="layui-input-inline">
+            <input type="text" id="id" required  lay-verify="required" placeholder="员工工号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" id="name" required  lay-verify="required" placeholder="员工姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工住址</label>
+        <div class="layui-input-inline">
+            <input type="text" id="diz" required  lay-verify="required" placeholder="员工住址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工电话</label>
+        <div class="layui-input-inline">
+            <input type="text" id="dianh" required  lay-verify="required" placeholder="员工电话" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工岗位</label>
+        <div class="layui-input-inline">
+            <input type="text" id="gangw" required  lay-verify="required" placeholder="所在岗位" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工年龄</label>
+        <div class="layui-input-inline">
+            <input type="text" id="nianl" required lay-verify="required" placeholder="员工年龄" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">1，129</div>
+    </div>
+    <div class="layui-form-item" pane>
+        <label class="layui-form-label">是否实名认证</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="是" title="是">
+            <input type="radio" name="sex" value="否" title="否" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button id="su" class="layui-btn" >立即提交</button>
+            <button type="reset" id="sb" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</i>
+<div class="dis">
+
+</div>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(da){
+            // layer.msg(JSON.stringify(data.field));
+            // return false;
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $("#su").click(function () {
+            $.ajax({
+                type:'post',
+                url:"{:url('zsgc/xg_a')}",
+                data:{
+                    id:$("#id").val(),
+                    name:$("#name").val(),
+                    xinb:$("input[name='sex']:checked").val(),
+                    nianl:$("#nianl").val(),
+                    dianh:$("#dianh").val(),
+                    banj:$("#gangw").val(),
+                    diz:$("#diz").val(),
+
+                },
+                success:function (rel) {
+                    layer.msg(rel,{icon: 5})
+                }
+            })
+        })
+        $("#sb").click(function () {
+            $("input").val('');
+        })
+    })
+</script>
+</body>
+</html>
